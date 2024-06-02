@@ -1,6 +1,6 @@
 path: ../drive/MyDrive/ECS271/
-train: custom_train_10000.cache
-val: custom_val_2500.cache
+train: heli_train_10000/
+val: heli_val_2500/
 test:
 
 names:
