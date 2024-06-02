@@ -1,0 +1,15 @@
+path: ../drive/MyDrive/ECS271/
+train: custom_train_10000/
+val: custom_val_2500/
+test:
+
+names:
+  0: airplane
+  1: helicopter
+  2: small-vehicle
+  3: large-vehicle
+  4: ship
+  5: container
+  6: storage-tank
+  7: swimming-pool
+  8: windmill

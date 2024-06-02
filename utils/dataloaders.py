@@ -136,7 +136,7 @@ class SmartDistributedSampler(distributed.DistributedSampler):
         g = torch.Generator()
         g.manual_seed(self.seed + self.epoch)
 
-        # determine the eventual size (n) of self.indices (DDP indices)
+        # determine the the eventual size (n) of self.indices (DDP indices)
         n = int((len(self.dataset) - self.rank - 1) / self.num_replicas) + 1  # num_replicas == WORLD_SIZE
         idx = torch.randperm(n, generator=g)
         if not self.shuffle:
@@ -1159,11 +1159,13 @@ def verify_image_label(args):
                 assert (lb >= 0).all(), f"negative label values {lb[lb < 0]}"
                 assert (lb[:, 1:] <= 1).all(), f"non-normalized or out of bounds coordinates {lb[:, 1:][lb[:, 1:] > 1]}"
                 _, i = np.unique(lb, axis=0, return_index=True)
+                '''
                 if len(i) < nl:  # duplicate row check
                     lb = lb[i]  # remove duplicates
                     if segments:
                         segments = [segments[x] for x in i]
                     msg = f"{prefix}WARNING ⚠️ {im_file}: {nl - len(i)} duplicate labels removed"
+                '''
             else:
                 ne = 1  # label empty
                 lb = np.zeros((0, 5), dtype=np.float32)
